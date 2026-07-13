@@ -1,0 +1,13 @@
+CREATE DATABASE booknotes;
+
+CREATE TABLE books (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  author VARCHAR(255) NOT NULL,
+  isbn VARCHAR(20),
+  cover_url VARCHAR(500),
+  rating INTEGER CHECK (rating BETWEEN 1 AND 5),
+  review TEXT,
+  date_read DATE NOT NULL DEFAULT CURRENT_DATE,
+  created_at TIMESTAMP DEFAULT NOW()
+);

@@ -1,0 +1,25 @@
+<%- include("partials/header") %>
+<div class="form-page">
+  <h2>Edit Book</h2>
+  <form action="/books/<%= book.id %>?_method=PUT" method="POST" class="book-form">
+    <label>Title</label>
+    <input type="text" name="title" value="<%= book.title %>" required />
+
+    <label>Author</label>
+    <input type="text" name="author" value="<%= book.author %>" required />
+
+    <label>Rating (1-5)</label>
+    <input type="number" name="rating" min="1" max="5" value="<%= book.rating %>" required />
+
+    <label>Date Read</label>
+    <input type="date" name="date_read" value="<%= book.date_read.toISOString().split('T')[0] %>" required />
+
+    <label>Your Notes / Review</label>
+    <textarea name="review" rows="5"><%= book.review %></textarea>
+
+    <button type="submit">Update Book</button>
+  </form>
+</div>
+
+
+<%- include("partials/footer") %>

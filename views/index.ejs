@@ -1,0 +1,46 @@
+<%- include("partials/header") %>
+
+<div class="sort-bar">
+  <span class="label">Sort by</span>
+  <a href="/?sort=recent" class="<%= currentSort === 'recent' ? 'active' : '' %>">Recent</a>
+  <a href="/?sort=rating" class="<%= currentSort === 'rating' ? 'active' : '' %>">Rating</a>
+  <a href="/?sort=title" class="<%= currentSort === 'title' ? 'active' : '' %>">Title</a>
+</div>
+
+<% if (books.length === 0) { %>
+  <div class="empty-shelf">
+    <h2>Your shelf is empty</h2>
+    <p>Add the first book you've read and start building your library.</p>
+    <a href="/new">+ Add a book</a>
+  </div>
+<% } else { %>
+  <div class="book-grid">
+    <% books.forEach(book => { %>
+      <div class="book-card">
+        <div class="book-spine spine-<%= book.rating %>"></div>
+        <div class="book-body">
+          <div class="book-cover-row">
+            <img src="<%= book.cover_url || 'https://placehold.co/128x184?text=No+Cover' %>" alt="<%= book.title %> cover" />
+            <div class="book-meta">
+              <div class="book-title"><%= book.title %></div>
+              <div class="book-author"><%= book.author %></div>
+              <div class="book-rating">★ <%= book.rating %>/5</div>
+              <div class="book-date"><%= new Date(book.date_read).toLocaleDateString() %></div>
+            </div>
+          </div>
+          <% if (book.review) { %>
+            <div class="book-review"><%= book.review %></div>
+          <% } %>
+          <div class="book-actions">
+            <a href="/books/<%= book.id %>/edit">Edit</a>
+            <form action="/books/<%= book.id %>?_method=DELETE" method="POST" style="display:inline">
+              <button type="submit" onclick="return confirm('Delete this book?')">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+<% } %>
+
+<%- include("partials/footer") %>
