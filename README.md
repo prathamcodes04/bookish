@@ -1,8 +1,6 @@
-# 📚 Shelf Notes
+# 📚 Bookish
 
 A personal book-tracking web app to log what you're reading, rate books, and jot down notes — inspired by [Derek Sivers' book list](https://sive.rs/book).
-
-> Rename the title above if you go with a different repo name (e.g. Bookish, Read Log, Marginalia).
 
 ## ✨ Features
 
